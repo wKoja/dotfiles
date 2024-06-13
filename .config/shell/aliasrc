@@ -1,0 +1,128 @@
+#!/bin/sh
+# Use neovim for vim if present.
+[ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
+
+
+# Verbosity and settings that you pretty much just always are going to want. alias \ cp="cp -iv" \
+alias \
+	mv="mv -iv" \
+	rm="rm -vI" \
+	mkd="mkdir -pv" \
+	yt="pipe-viewer" \
+	yta="yt -x -f bestaudio/best" \
+	spt="spotifyd && spt" \
+	mpvsubbed="mpv $1 --sub-auto=all" \
+	ffmpeg="ffmpeg -hide_banner" \
+  pythonvenv="python -m venv venv" \
+  shellcomp="shc -f $1 -o $2" \
+	acpi="acpi -i" \
+  gpgaes="gpg --symmetric --cipher-algo AES256 " \
+  npm="npm" \
+setmonitors="xrandr --output eDP1 --mode 1366x768 --pos 0x0 --rotate normal --output DP1 --off --output DP2 --off --output HDMI1 --off --output HDMI2 --primary --mode 2560x1080 --pos 1366x0 --rotate normal --output VIRTUAL1 --off" \
+
+# neovim distros
+alias \
+  lazyvim="NVIM_APPNAME=lazyvim nvim" \
+  astronvim="NVIM_APPNAME=astronvim_v4 nvim" \
+
+
+# Files & Folders visited often - subject to constant change
+
+alias \
+    vimrc="cd ~/.config/nvim/lua/plugins/ && nvim user.lua"\
+    awmrc="cd ~/.config/awesome/ && nvim rc.lua" \
+    tmuxrc="vim ~/.config/tmux/tmux.conf" \
+    dwmconf="cd ~/.local/src/dwm-luke/ && nvim config.h"\
+    stconf="cd ~/.local/src/st-luke/ && nvim config.h"\
+    swebooks="cd ~/Books/Computer\ Science/Software\ Engineering/ && ranger" \
+    localsrc="cd ~/.local/src/ && ranger"\
+    noitaconfig="vim ~/.local/share/Steam/steamapps/compatdata/881100/pfx/drive_c/users/steamuser/AppData/LocalLow/Nolla_Games_Noita/save_shared/config.xml"\
+    gawebapp="cd ~/GetAmped/ga-webapp/ && nvim . -c \"NvimTreeToggle\""\
+
+
+
+
+# Colorize commands when possible.
+alias \
+	ls="ls -hN --color=auto --group-directories-first" \
+	grep="grep --color=auto" \
+	diff="diff --color=auto" \ ccat="highlight --out-format=ansi"
+
+# These common commands are just too long! Abbreviate them.
+alias \
+	ka="killall" \
+	g="git" \
+	trem="transmission-remote" \
+	sdn="sudo shutdown -h now" \
+	f="$FILE" \
+	e="$EDITOR" \
+	v="$EDITOR" \
+	upgradesystem="sudo pacman -Syu --noconfirm" \
+	instpkg="sudo pacman -S $1" \
+	rmvpkg="sudo pacman -Rs $1" \
+  findpkg="pacman -Ss" \
+  syncpacs="sudo pacman -Syy"\
+	xi="sudo xbps-install" \
+	xr="sudo xbps-remove -R" \
+	xq="xbps-query" \
+	z="zathura"
+
+# Git commands
+alias \
+	iu="git status --porcelain | grep '??' | cut -c4- >> .gitignore && git status"\
+	pushup="git push --set-upstream origin $1"\
+  addorigin="git remote add origin $1"\
+  newbranch="git checkout -b $1"\
+  renamebranch="git branch -m $1" \
+	igfile="$1 >> .gitignore" \
+
+# TEMPORARY WORKAROUNDS
+
+alias \
+  zprofilesource="source ~/.zprofile" \
+  livedroplet="ssh root@165.227.183.231" \
+  audiodroplet="ssh root@138.197.92.234" \
+  sshgaserver="ssh ubuntu@38.54.57.221" \
+
+# ssh keys
+alias \
+  sshme="ssh-add ~/.ssh/id_rsa" \
+  sshfullbag="ssh-add ~/.ssh/fullbag" \
+
+# dev specific
+alias \
+  bootdebug="./gradlew bootRun --debug-jvm" \
+
+# ssh tooling
+alias \
+  killsshconnection="kill $(lsof -i -P -n | grep LISTEN | grep ssh | head -1 | awk '{print $2}')"\
+	listenports="lsof -i -P -n | grep LISTEN"\
+	establishedports="lsof -i -P -n | grep ESTABLISHED"\
+
+# docker
+alias \
+  rmalldockerimages="docker ps -a -q | xargs docker rm"\
+  delalldockerimages="docker images -a -q | xargs docker rmi -f"\
+  rmdanglingvolumes="docker volume rm $(docker volume ls -qf dangling=true)" \
+
+# Some other stuff
+alias \ magit="nvim -c MagitOnly" \
+	ref="shortcuts >/dev/null; source ${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/zshnameddirrc" \
+	weath="less -S ${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport" \
+	tmux="tmux -2 -f ${XDG_CONFIG_HOME:-$HOME/.config}/tmux/tmux.conf" \
+	vpnon="windscribe connect Pinacoteca" \
+  sudo='doas' \
+  refreshx="xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources"\
+	vpnoff="windscribe disconnect" \
+	ctwebm="ffmpeg -y -r 30 -i *.gif -c:v libvpx -quality good -cpu-used 0 -b:v 1.4M -crf 12 -pix_fmt yuv420p -movflags faststart output.webm" \
+	compresimg="ffmpeg -i $1 -q:v 10 output.jpg" \
+  decompjavaclasses="jad -d $1 -s .java -r -f -dead -ff -safe -t **/*.class"\
+	corectrl="sudo corectrl"\
+	ducks="du -cks * | sort -rn | head"\
+	findbigfiles="find $HOME -type f -printf '%s %p\n' | sort -nr | head -10"\
+	syncclock="sudo ntpdate -u 0.br.pool.ntp.org"\
+	ccompile="sudo make clean && sudo make install"\
+  resetx="xrdb ${XDG_CONFIG_HOME/x11/xresources}"\
+  stalkeraffinity="taskset -cp 1-$(($(nproc) - 1)) $(pgrep 'Anomaly.*AVX')"\
+	trkpntspeed="xinput --set-prop \"$( xinput | grep Track | awk '{print $6}' | cut -c4-)\" \"libinput Accel Speed\" $1 "\
+	untar="tar -xvf $1"

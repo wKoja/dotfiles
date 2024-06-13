@@ -1,0 +1,1 @@
+/home/koja/.config/x11/xinitrc
