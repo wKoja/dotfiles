@@ -7,6 +7,7 @@
 alias \
 	mv="mv -iv" \
 	rm="rm -vI" \
+	grep="rg" \
 	mkd="mkdir -pv" \
 	yt="pipe-viewer" \
 	yta="yt -x -f bestaudio/best" \
@@ -17,6 +18,7 @@ alias \
   shellcomp="shc -f $1 -o $2" \
 	acpi="acpi -i" \
   gpgaes="gpg --symmetric --cipher-algo AES256 " \
+  metatrader5="wine64 ~/.local/share/wineprefixes/default/drive_c/Program\ Files/MetaTrader\ 5/terminal64.exe"\
   npm="npm" \
 setmonitors="xrandr --output eDP1 --mode 1366x768 --pos 0x0 --rotate normal --output DP1 --off --output DP2 --off --output HDMI1 --off --output HDMI2 --primary --mode 2560x1080 --pos 1366x0 --rotate normal --output VIRTUAL1 --off" \
 
@@ -24,12 +26,13 @@ setmonitors="xrandr --output eDP1 --mode 1366x768 --pos 0x0 --rotate normal --ou
 alias \
   lazyvim="NVIM_APPNAME=lazyvim nvim" \
   astronvim="NVIM_APPNAME=astronvim_v4 nvim" \
+  kicknvim='NVIM_APPNAME='nvim-kickstart" nvim" \
 
 
 # Files & Folders visited often - subject to constant change
 
 alias \
-    vimrc="cd ~/.config/nvim/lua/plugins/ && nvim user.lua"\
+    vimrc="cd ~/.config/nvim/lua/ && nvim community.lua"\
     awmrc="cd ~/.config/awesome/ && nvim rc.lua" \
     tmuxrc="vim ~/.config/tmux/tmux.conf" \
     dwmconf="cd ~/.local/src/dwm-luke/ && nvim config.h"\
@@ -65,6 +68,7 @@ alias \
 	xi="sudo xbps-install" \
 	xr="sudo xbps-remove -R" \
 	xq="xbps-query" \
+	lf="lfub" \
 	z="zathura"
 
 # Git commands
@@ -83,6 +87,9 @@ alias \
   livedroplet="ssh root@165.227.183.231" \
   audiodroplet="ssh root@138.197.92.234" \
   sshgaserver="ssh ubuntu@38.54.57.221" \
+  sshindyxdev="ssh indyx@indyx.codepilot.com" \
+  sshindyxstaging="ssh indyx@staging.indyx.ai" \
+  sshindyxprod="ssh indyx@indyx.ai" 
 
 # ssh keys
 alias \
