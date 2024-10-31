@@ -86,10 +86,6 @@ alias \
   zprofilesource="source ~/.zprofile" \
   livedroplet="ssh root@165.227.183.231" \
   audiodroplet="ssh root@138.197.92.234" \
-  sshgaserver="ssh ubuntu@38.54.57.221" \
-  sshindyxdev="ssh indyx@indyx.codepilot.com" \
-  sshindyxstaging="ssh indyx@staging.indyx.ai" \
-  sshindyxprod="ssh indyx@indyx.ai" 
 
 # ssh keys
 alias \
@@ -118,7 +114,7 @@ alias \ magit="nvim -c MagitOnly" \
 	weath="less -S ${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport" \
 	tmux="tmux -2 -f ${XDG_CONFIG_HOME:-$HOME/.config}/tmux/tmux.conf" \
 	vpnon="windscribe connect Pinacoteca" \
-  sudo='doas' \
+  sudo='sudo' \
   refreshx="xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources"\
 	vpnoff="windscribe disconnect" \
 	ctwebm="ffmpeg -y -r 30 -i *.gif -c:v libvpx -quality good -cpu-used 0 -b:v 1.4M -crf 12 -pix_fmt yuv420p -movflags faststart output.webm" \

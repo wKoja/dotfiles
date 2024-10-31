@@ -8,7 +8,7 @@ xrandr --output DisplayPort-0 --primary --mode 1920x1080 --pos 0x740 --rotate no
 setbg &			# set the background with the `setbg` script
 xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources & xrdbpid=$!	# Uncomment to use Xresources colors/settings on startup
 
-autostart="mpd xcompmgr dunst unclutter pipewire remaps"
+autostart="mpd xcompmgr dunst unclutter pipewire remaps transmission-daemon"
 
 for program in $autostart; do
 	pidof -sx "$program" || "$program" &

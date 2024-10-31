@@ -96,5 +96,14 @@ esac
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+# Adds ruby gems to $PATH
+export PATH="$PATH:/home/koja/.local/share/gem/ruby/3.3.0/bin"
+
+# rvm
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
 # bun completions
 [ -s "/home/koja/.bun/_bun" ] && source "/home/koja/.bun/_bun"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
