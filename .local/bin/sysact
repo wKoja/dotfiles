@@ -13,12 +13,13 @@ wmpid(){ # This function is needed if there are multiple instances of the window
 	echo "${tree%%)*}"
 }
 
-case "$(printf "🔒 lock\n🚪 leave $WM\n♻️ renew\n♻️ resource xinitrc\n🕹️game stream mode\n🐻 hibernate\n🔃 reboot\n🖥️shutdown\n💤 sleep\n📺 display off" | dmenu -i -p 'Action: ')" in
+case "$(printf "🔒 lock\n🚪 leave $WM\n♻️ renew\n♻️ resource xinitrc\n🕹️game stream mode\n🖥️dual monitor mode\n🐻 hibernate\n🔃 reboot\n🖥️shutdown\n💤 sleep\n📺 display off" | dmenu -i -p 'Action: ')" in
 	'🔒 lock') slock ;;
 	"🚪 leave $WM") kill -TERM "$(wmpid)" ;;
 	"♻️ renew $WM") kill -HUP "$(wmpid)" ;;
 	"♻️ resource xinitrc") source ~/.config/x11/xinitrc ;;
-	"🕹️game stream mode") xrandr --output DisplayPort-0 --primary --mode 1920x1080 --rate 60 --pos 0x740 --rotate normal --output DisplayPort-1 --off --output DisplayPort-2 --off --output HDMI-A-0 --off ;;
+	"🕹️game stream mode") xrandr --output DisplayPort-0 --off --output DisplayPort-1 --mode 1920x1080 --pos 0x0 --rotate normal --output DisplayPort-2 --off --output HDMI-A-0 --off ;;
+	"🖥️dual monitor mode") xrandr --output DisplayPort-0 --primary --off --output DisplayPort-1 --mode 1920x1080 --pos 0x790 --rotate normal --output DisplayPort-2 --off --output HDMI-A-0 --mode 2560x1080 --pos 1920x0 --rotate right ;;
 	'🐻 hibernate') slock $ctl hibernate -i ;;
 	'💤 sleep') slock $ctl suspend -i ;;
 	'🔃 reboot') $ctl reboot -i ;;
