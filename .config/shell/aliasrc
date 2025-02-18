@@ -1,4 +1,17 @@
 #!/bin/sh
+
+# function definitions
+
+# make images smaller using ffmpeg
+compressimg() {
+    ffmpeg -i "$1" -q:v 10 "$2.jpg"
+}
+
+# converts videos/gifs to WEBM
+ctwebm(){
+		ffmpeg -y -r 30 -i "$1" -c:v libvpx -quality good -cpu-used 0 -b:v 1.4M -crf 12 -pix_fmt yuv420p -movflags faststart output.webm
+}
+
 # Use neovim for vim if present.
 [ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
 
@@ -118,8 +131,6 @@ alias \ magit="nvim -c MagitOnly" \
   sudo='sudo' \
   refreshx="xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources"\
 	vpnoff="windscribe disconnect" \
-	ctwebm="ffmpeg -y -r 30 -i *.gif -c:v libvpx -quality good -cpu-used 0 -b:v 1.4M -crf 12 -pix_fmt yuv420p -movflags faststart output.webm" \
-	compresimg="ffmpeg -i $1 -q:v 10 output.jpg" \
   decompjavaclasses="jad -d $1 -s .java -r -f -dead -ff -safe -t **/*.class"\
 	corectrl="sudo corectrl"\
 	ducks="du -cks * | sort -rn | head"\
